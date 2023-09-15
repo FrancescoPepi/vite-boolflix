@@ -20,6 +20,7 @@ export default {
   // 	props:{
   // 		passaggioInfo: stringa,
   //  	 },
+  emits: ["query-key"],
 };
 </script>
 
@@ -47,15 +48,21 @@ export default {
             <a class="nav-link" aria-current="page" href="#">Link</a>
           </li>
         </ul>
-        <form class="d-flex" role="search">
+        <form class="d-flex">
           <input
             class="form-control me-2"
             type="search"
             placeholder="Search"
             aria-label="Search"
             v-model="searchName"
+            @keyup.enter="$emit('query-key', searchName)"
           />
-          <button class="btn btn-danger" type="submit">Search</button>
+          <button
+            class="btn btn-danger"
+            @click.prevent="$emit('query-key', searchName)"
+          >
+            Search
+          </button>
         </form>
       </div>
     </div>
