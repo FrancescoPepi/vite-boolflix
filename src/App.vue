@@ -1,5 +1,6 @@
 <script>
 import HeaderComponent from "./components/HeaderComponent.vue";
+import MainComponent from "./components/MainComponent.vue";
 import axios from "axios";
 import { store } from "./store.js";
 
@@ -15,7 +16,7 @@ export default {
     fetchFilmDetails(queryKey) {
       console.log(queryKey);
       axios
-        .get("https://api.themoviedb.org/3/search/tv", {
+        .get("https://api.themoviedb.org/3/search/movie", {
           params: {
             query: `${queryKey}`,
             api_key: "bf6e1f29cefbb605f9ea14308881251b",
@@ -23,9 +24,20 @@ export default {
         })
         .then((film) => {
           const detailsTemporany = film.data.results.map((film) => {
-            const { original_name, title, vote_average, original_language } =
-              film;
-            return { original_name, title, vote_average, original_language };
+            const {
+              poster_path,
+              original_title,
+              title,
+              vote_average,
+              original_language,
+            } = film;
+            return {
+              poster_path,
+              original_title,
+              title,
+              vote_average,
+              original_language,
+            };
           });
           store.filmDetails = detailsTemporany;
           console.log(detailsTemporany);
@@ -35,6 +47,7 @@ export default {
 
   components: {
     HeaderComponent,
+    MainComponent,
   },
 
   // 	props:{
@@ -44,8 +57,8 @@ export default {
 </script>
 
 <template>
-  <!-- <h1 class="btn btn-primary">{{ title }}</h1> -->
   <HeaderComponent @query-key="fetchFilmDetails" />
+  <MainComponent />
 </template>
 
 <style lang="scss"></style>
