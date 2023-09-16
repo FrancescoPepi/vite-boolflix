@@ -1,6 +1,6 @@
 <script>
 import MovieCardComponent from "./MovieCardComponent.vue";
-import SeriesCardComponent from "./SeriesCardComponent.vue";
+// import SeriesCardComponent from "./SeriesCardComponent.vue";
 import { store } from "../store.js";
 
 export default {
@@ -20,7 +20,7 @@ export default {
 
   components: {
     MovieCardComponent,
-    SeriesCardComponent,
+    // SeriesCardComponent,
   },
 
   // 	props:{
@@ -35,16 +35,18 @@ export default {
     <div class="row row-cols-4">
       <MovieCardComponent
         v-for="(card, index) in store.filmDetails"
-        :film="store.filmDetails[index]"
+        :movies="store.filmDetails[index]"
+        :index="index"
+        :key="index"
       />
     </div>
   </div>
   <h1>{{ series }}</h1>
   <div class="container">
     <div class="row row-cols-4">
-      <SeriesCardComponent
+      <MovieCardComponent
         v-for="(card, index) in store.seriesDetails"
-        :series="store.seriesDetails[index]"
+        :movies="store.seriesDetails[index]"
       />
     </div>
   </div>

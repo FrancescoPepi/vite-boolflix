@@ -87,14 +87,13 @@ export default {
 </script>
 
 <template>
-  <div class="bg">
-    <HeaderComponent @query-key="fetchFilmDetails" />
-    <MainComponent />
-  </div>
+  <!-- <flag iso="it" /> -->
+  <HeaderComponent @query-key="fetchFilmDetails" />
+  <MainComponent />
 </template>
 
 <style lang="scss">
-.bg {
+body {
   background-color: rgb(23, 23, 23);
   height: 100%;
 }
