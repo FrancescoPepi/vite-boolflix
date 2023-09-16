@@ -5,6 +5,7 @@ export default {
   data() {
     return {
       notFoundImg: "/no-pic.webp",
+      maxStar: (Math.floor(this.movies.vote_average) / 2).toFixed(),
     };
   },
 
@@ -28,7 +29,8 @@ export default {
     index: Number,
   },
   created() {
-    console.log(this.movies);
+    // console.log(this.movies);
+    this.star();
   },
 };
 </script>
@@ -81,7 +83,15 @@ export default {
             </span>
           </p>
 
-          <p><span> VOTO: </span> {{ movies.vote_average }}</p>
+          <p>
+            <span> VOTO: </span>
+            <span v-for="(star, index) in 5" :key="index">
+              <font-awesome-icon
+                :class="index < maxStar ? 'active' : ''"
+                icon="fa-solid fa-star"
+              />
+            </span>
+          </p>
         </div>
       </div>
     </div>
@@ -111,6 +121,9 @@ export default {
   span {
     font-weight: 800;
     color: rgb(192, 185, 185);
+  }
+  .active {
+    color: red;
   }
 }
 </style>

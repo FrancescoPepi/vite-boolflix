@@ -87,14 +87,15 @@ export default {
 </script>
 
 <template>
-  <!-- <flag iso="it" /> -->
   <HeaderComponent @query-key="fetchFilmDetails" />
   <MainComponent />
+  <!-- <font-awesome-icon icon="fa-solid fa-star" /> -->
+  <!-- <font-awesome-icon icon="fab fa-clone" /> -->
 </template>
 
 <style lang="scss">
 body {
-  background-color: rgb(23, 23, 23);
+  background-color: rgb(23, 23, 23) !important;
   height: 100%;
 }
 </style>
