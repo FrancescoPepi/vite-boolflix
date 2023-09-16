@@ -32,6 +32,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  border: 1px dashed red;
+  // border: 1px dashed red;
+  color: white;
 }
 </style>

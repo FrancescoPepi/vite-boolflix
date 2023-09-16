@@ -1,11 +1,13 @@
 <script>
 import MovieCardComponent from "./MovieCardComponent.vue";
+import SeriesCardComponent from "./SeriesCardComponent.vue";
 import { store } from "../store.js";
 
 export default {
   data() {
     return {
-      title: "Move List",
+      movie: "Move List",
+      series: "Series List",
       store,
     };
   },
@@ -18,6 +20,7 @@ export default {
 
   components: {
     MovieCardComponent,
+    SeriesCardComponent,
   },
 
   // 	props:{
@@ -27,7 +30,7 @@ export default {
 </script>
 
 <template>
-  <h1>{{ title }}</h1>
+  <h1>{{ movie }}</h1>
   <div class="container">
     <div class="row row-cols-4">
       <MovieCardComponent
@@ -36,10 +39,15 @@ export default {
       />
     </div>
   </div>
+  <h1>{{ series }}</h1>
+  <div class="container">
+    <div class="row row-cols-4">
+      <SeriesCardComponent
+        v-for="(card, index) in store.seriesDetails"
+        :series="store.seriesDetails[index]"
+      />
+    </div>
+  </div>
 </template>
 
-<style lang="scss" scoped>
-.container {
-  border: 1px dashed red;
-}
-</style>
+<style lang="scss" scoped></style>
