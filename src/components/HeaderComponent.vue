@@ -4,14 +4,40 @@ export default {
     return {
       title: "titolo",
       searchName: "",
+      filmActive: false,
+      seriesActive: false,
     };
   },
 
-  // 	methods:{
-  // 		myMethods(){
-  // 			...
-  // 		},
-  // 	},
+  methods: {
+    activeFilm() {
+      const film = document.getElementById("film");
+
+      if (film.classList.contains("active")) {
+        film.classList.remove("active");
+        this.filmActive = false;
+        console.log("non ce +");
+      } else {
+        film.classList.add("active");
+        this.filmActive = true;
+        console.log("ora ce");
+      }
+    },
+
+    activeSeries() {
+      const film = document.getElementById("series");
+
+      if (film.classList.contains("active")) {
+        film.classList.remove("active");
+        this.seriesActive = false;
+        console.log("non ce +");
+      } else {
+        film.classList.add("active");
+        this.seriesActive = true;
+        console.log("ora ce");
+      }
+    },
+  },
 
   // components: {
   //	MyComponent,
@@ -45,7 +71,24 @@ export default {
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Link</a>
+            <a
+              @click="activeFilm()"
+              id="film"
+              class="nav-link"
+              aria-current="page"
+              href="#"
+              >Film</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="series"
+              @click="activeSeries()"
+              aria-current="page"
+              href="#"
+              >Series</a
+            >
           </li>
         </ul>
         <form class="d-flex">
@@ -58,8 +101,12 @@ export default {
           />
           <button
             class="btn btn-danger"
-            @keyup.enter="$emit('query-key', searchName)"
-            @click.prevent="$emit('query-key', searchName)"
+            @keyup.enter="
+              $emit('query-key', searchName, filmActive, seriesActive)
+            "
+            @click.prevent="
+              $emit('query-key', searchName, filmActive, seriesActive)
+            "
           >
             Search
           </button>

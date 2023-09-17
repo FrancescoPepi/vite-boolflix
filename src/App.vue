@@ -15,6 +15,7 @@ export default {
   methods: {
     fetchFilmDetails(queryKey) {
       store.isLoading = true;
+      console.log(queryKey);
       // axios film
       axios
         .get("https://api.themoviedb.org/3/search/movie", {

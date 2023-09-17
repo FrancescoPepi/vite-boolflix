@@ -5,7 +5,7 @@ import LoaderComponent from "./components/LoaderComponent.vue";
 // BOOTSTRAP
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as bootstrap from "bootstrap";
-// import './style.css'
+import "./style/general.scss";
 
 // FONTAWSOME
 /* import the fontawesome core */
