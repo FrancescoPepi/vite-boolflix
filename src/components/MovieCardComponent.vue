@@ -60,12 +60,15 @@ export default {
             <span> LINGUA: </span>
             <span>
               <img
-                v-if="
-                  movies.original_language == 'en' ||
-                  movies.original_language == 'ja'
-                "
+                v-if="movies.original_language == 'en'"
                 src="
               https://www.countryflagicons.com/SHINY/32/GB.png
+            "
+              />
+              <img
+                v-else-if="movies.original_language == 'ja'"
+                src="
+              https://www.countryflagicons.com/SHINY/32/JP.png
             "
               />
               <img

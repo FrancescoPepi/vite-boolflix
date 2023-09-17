@@ -30,6 +30,7 @@ export default {
 </script>
 
 <template>
+  <!-- PAGINA VUOTA -->
   <div class="container">
     <h1
       class="text-center"
@@ -57,6 +58,8 @@ export default {
       <MovieCardComponent
         v-for="(card, index) in store.seriesDetails"
         :movies="store.seriesDetails[index]"
+        :index="store.filmDetails.length + index"
+        :key="index"
       />
     </div>
   </div>

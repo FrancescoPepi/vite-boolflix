@@ -55,10 +55,10 @@ export default {
             placeholder="Search"
             aria-label="Search"
             v-model="searchName"
-            @keyup.enter="$emit('query-key', searchName)"
           />
           <button
             class="btn btn-danger"
+            @keyup.enter="$emit('query-key', searchName)"
             @click.prevent="$emit('query-key', searchName)"
           >
             Search
@@ -71,6 +71,7 @@ export default {
 
 <style lang="scss" scoped>
 .navbar {
+  z-index: 8;
   background-color: black !important;
   .navbar-brand {
     color: red;

@@ -14,7 +14,7 @@ export default {
 
   methods: {
     fetchFilmDetails(queryKey) {
-      // console.log(queryKey);
+      store.isLoading = true;
       // axios film
       axios
         .get("https://api.themoviedb.org/3/search/movie", {
@@ -81,6 +81,9 @@ export default {
           } else {
             console.log("Series Found");
           }
+        })
+        .finally(() => {
+          store.isLoading = false;
         });
     },
   },
@@ -97,6 +100,7 @@ export default {
 </script>
 
 <template>
+  <LoaderComponent v-if="store.isLoading" />
   <HeaderComponent @query-key="fetchFilmDetails" />
   <MainComponent />
 </template>
