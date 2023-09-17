@@ -1,6 +1,5 @@
 <script>
 import MovieCardComponent from "./MovieCardComponent.vue";
-// import SeriesCardComponent from "./SeriesCardComponent.vue";
 import { store } from "../store.js";
 
 export default {
@@ -8,6 +7,7 @@ export default {
     return {
       movie: "Move List",
       series: "Series List",
+      notFound: "Fai la tua ricerca",
       store,
     };
   },
@@ -30,8 +30,17 @@ export default {
 </script>
 
 <template>
-  <h1>{{ movie }}</h1>
   <div class="container">
+    <h1
+      class="text-center"
+      v-show="store.filmDetails.length <= 0 || store.seriesDetails.length <= 0"
+    >
+      {{ notFound }}
+    </h1>
+  </div>
+  <!-- MOVIE -->
+  <div class="container">
+    <h1 v-show="store.filmDetails.length > 0">{{ movie }}</h1>
     <div class="row row-cols-4">
       <MovieCardComponent
         v-for="(card, index) in store.filmDetails"
@@ -41,8 +50,9 @@ export default {
       />
     </div>
   </div>
-  <h1>{{ series }}</h1>
+  <!-- SERIES -->
   <div class="container">
+    <h1 v-show="store.seriesDetails.length > 0">{{ series }}</h1>
     <div class="row row-cols-4">
       <MovieCardComponent
         v-for="(card, index) in store.seriesDetails"

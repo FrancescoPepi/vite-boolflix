@@ -89,8 +89,6 @@ export default {
 <template>
   <HeaderComponent @query-key="fetchFilmDetails" />
   <MainComponent />
-  <!-- <font-awesome-icon icon="fa-solid fa-star" /> -->
-  <!-- <font-awesome-icon icon="fab fa-clone" /> -->
 </template>
 
 <style lang="scss">

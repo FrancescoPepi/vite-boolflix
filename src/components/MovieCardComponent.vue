@@ -28,10 +28,6 @@ export default {
     movies: Object,
     index: Number,
   },
-  created() {
-    // console.log(this.movies);
-    this.star();
-  },
 };
 </script>
 
