@@ -24,13 +24,14 @@ export default {
           },
         })
         .then((film) => {
-          const detailsTemporany = film.data.results.map((film) => {
+          const paperinoObject = film.data.results.map((film) => {
             const {
               poster_path,
               original_title,
               title,
               vote_average,
               original_language,
+              overview,
             } = film;
             return {
               poster_path,
@@ -38,9 +39,12 @@ export default {
               title,
               vote_average,
               original_language,
+              overview,
             };
           });
-          store.filmDetails = detailsTemporany;
+          store.filmDetails = paperinoObject;
+          console.log(paperinoObject);
+
           // CONTROLLO FILM TROVATO O MENO.
           if (store.filmDetails.length <= 0 && queryKey.length > 0) {
             console.log("Film Not Found");
@@ -65,6 +69,7 @@ export default {
               name,
               vote_average,
               original_language,
+              overview,
             } = serie;
             return {
               poster_path,
@@ -72,6 +77,7 @@ export default {
               title: name,
               vote_average,
               original_language,
+              overview,
             };
           });
           store.seriesDetails = detailsTemporany;

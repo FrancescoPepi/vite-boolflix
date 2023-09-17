@@ -13,10 +13,24 @@ export default {
     on() {
       const card = document.querySelector(`[data-key="${this.index}"]`);
       card.querySelector(".card-body").style.bottom = "0";
+      card.querySelector(".card-body").style.opacity = "100%";
+      card.querySelector(".overview").style.bottom = "0";
+      card.querySelector(".overview").style.opacity = "100%";
+    },
+    onClick() {
+      // console.log("ciao");
+      const card = document.querySelector(`[data-key="${this.index}"]`);
+      card.querySelector(".card-body").style.left = "100%";
+      card.querySelector(".overview").style.left = "0%";
     },
     off() {
       const card = document.querySelector(`[data-key="${this.index}"]`);
+      card.querySelector(".card-body").style.left = "0";
       card.querySelector(".card-body").style.bottom = "-60%";
+      card.querySelector(".card-body").style.opacity = "0";
+      card.querySelector(".overview").style.left = "-100%";
+      card.querySelector(".overview").style.bottom = "-60%";
+      card.querySelector(".overview").style.opacity = "0";
     },
   },
 
@@ -36,6 +50,7 @@ export default {
     <div
       @mouseleave="off()"
       @mouseenter="on()"
+      @click="onClick()"
       :data-key="index"
       class="card"
       style="width: 18rem"
@@ -52,12 +67,16 @@ export default {
         class="card-img-top"
         alt="..."
       />
+      <!-- INFO FILM/SERIES -->
       <div class="card-body">
         <div class="card-text">
           <p><span> TITOLO: </span> {{ movies.title }}</p>
-          <p><span> TITOLO ORIGINALE: </span> {{ movies.original_title }}</p>
+          <p v-if="movies.original_title != movies.title">
+            <span> TITOLO ORIGINALE: </span> {{ movies.original_title }}
+          </p>
           <p>
             <span> LINGUA: </span>
+            <!-- FLAG -->
             <span>
               <img
                 v-if="movies.original_language == 'en'"
@@ -93,6 +112,14 @@ export default {
           </p>
         </div>
       </div>
+      <!-- DESCRIZIONE FILM/SERIES -->
+      <div class="overview">
+        <div class="card-text">
+          <p><span> TITOLO: </span> {{ movies.title }}</p>
+
+          <p>{{ movies.overview }}</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -104,12 +131,28 @@ export default {
   height: 100% !important;
   color: white;
   overflow: hidden;
+  .overview {
+    padding: 1rem;
+    height: 60%;
+    width: 100%;
+    background-color: #00000094;
+    opacity: 0%;
+
+    position: absolute;
+    bottom: -60%;
+    left: -100%;
+
+    transition: all 0.3s ease-in-out;
+    overflow-y: scroll;
+  }
   .card-body {
     position: absolute;
     bottom: -60%;
+    left: 0%;
     width: 100%;
     height: 60%;
     background-color: #00000094;
+    opacity: 0%;
     transition: all 0.3s ease-in-out;
   }
   .card-img-top {
