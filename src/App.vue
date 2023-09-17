@@ -33,6 +33,7 @@ export default {
               vote_average,
               original_language,
               overview,
+              release_date,
             } = film;
             return {
               poster_path,
@@ -41,6 +42,7 @@ export default {
               vote_average,
               original_language,
               overview,
+              release_date,
             };
           });
           store.filmDetails = paperinoObject;

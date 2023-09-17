@@ -70,8 +70,19 @@ export default {
       <!-- INFO FILM/SERIES -->
       <div class="card-body">
         <div class="card-text">
-          <p><span> TITOLO: </span> {{ movies.title }}</p>
-          <p v-if="movies.original_title != movies.title">
+          <p v-show="movies.title.length">
+            <span> TITOLO: </span> {{ movies.title }}
+          </p>
+          <!-- DATA -->
+          <p v-if="movies.release_date">
+            <span> RELEASE: </span>{{ movies.release_date }}
+          </p>
+          <p v-else="movies.release_date"><span> RELEASE: </span> NOT FOUND</p>
+          <p
+            v-if="
+              movies.original_title != movies.title && movies.original_title
+            "
+          >
             <span> TITOLO ORIGINALE: </span> {{ movies.original_title }}
           </p>
           <p>
@@ -131,6 +142,9 @@ export default {
   height: 100% !important;
   color: white;
   overflow: hidden;
+  p {
+    margin-bottom: 1px;
+  }
   .overview {
     padding: 1rem;
     height: 60%;
