@@ -14,7 +14,7 @@ export default {
 
   methods: {
     fetchFilmDetails(queryKey) {
-      console.log(queryKey);
+      // console.log(queryKey);
       // axios film
       axios
         .get("https://api.themoviedb.org/3/search/movie", {
@@ -41,7 +41,12 @@ export default {
             };
           });
           store.filmDetails = detailsTemporany;
-          console.log(detailsTemporany);
+          // CONTROLLO FILM TROVATO O MENO.
+          if (store.filmDetails.length <= 0 && queryKey.length > 0) {
+            console.log("Film Not Found");
+          } else {
+            console.log("Film Found");
+          }
         });
 
       // axios series
@@ -70,7 +75,12 @@ export default {
             };
           });
           store.seriesDetails = detailsTemporany;
-          console.log(detailsTemporany);
+          // CONTROLLO FILM TROVATO O MENO.
+          if (store.seriesDetails.length <= 0 && queryKey.length > 0) {
+            console.log("Series Not Found");
+          } else {
+            console.log("Series Found");
+          }
         });
     },
   },
