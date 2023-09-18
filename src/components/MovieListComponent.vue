@@ -5,7 +5,7 @@ import { store } from "../store.js";
 export default {
   data() {
     return {
-      movie: "Move List",
+      movie: "Movie List",
       series: "Series List",
       notFound: "Fai la tua ricerca",
       store,
@@ -39,7 +39,7 @@ export default {
       {{ notFound }}
     </h1>
   </div>
-  <!-- MOVIE -->
+  <!-- FILM -->
   <div class="container">
     <h1 v-show="store.filmDetails.length > 0">{{ movie }}</h1>
     <div class="row row-cols-4">

@@ -1,9 +1,12 @@
 <script>
+import { store } from "../store.js";
+
 export default {
   data() {
     return {
       title: "titolo",
       searchName: "",
+      store,
       filmActive: false,
       seriesActive: false,
     };
@@ -12,12 +15,15 @@ export default {
   methods: {
     activeFilm() {
       this.filmActive ? (this.filmActive = false) : (this.filmActive = true);
+      // store.active.filmActive = this.filmActive;
     },
 
     activeSeries() {
       this.seriesActive
         ? (this.seriesActive = false)
         : (this.seriesActive = true);
+      console.log(this.seriesActive);
+      // store.active.seriesActive = this.seriesActive;
     },
   },
 
@@ -88,6 +94,7 @@ export default {
             @keyup.enter="
               $emit('query-key', searchName, filmActive, seriesActive)
             "
+            :class="searchName.length <= 0 ? 'disabled' : ''"
             @click.prevent="
               $emit('query-key', searchName, filmActive, seriesActive)
             "

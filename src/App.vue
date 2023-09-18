@@ -54,9 +54,13 @@ export default {
           } else {
             console.log("Film Found");
           }
+        })
+        .finally(() => {
+          store.isLoading = false;
         });
 
       // axios series
+
       axios
         .get("https://api.themoviedb.org/3/search/tv", {
           params: {
