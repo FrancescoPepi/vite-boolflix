@@ -40,7 +40,7 @@ export default {
     </h1>
   </div>
   <!-- FILM -->
-  <div class="container">
+  <div class="container" v-if="store.active.filmActive">
     <h1 v-show="store.filmDetails.length > 0">{{ movie }}</h1>
     <div class="row row-cols-4">
       <MovieCardComponent
@@ -52,7 +52,7 @@ export default {
     </div>
   </div>
   <!-- SERIES -->
-  <div class="container">
+  <div class="container" v-if="store.active.seriesActive">
     <h1 v-show="store.seriesDetails.length > 0">{{ series }}</h1>
     <div class="row row-cols-4">
       <MovieCardComponent

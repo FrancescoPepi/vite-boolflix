@@ -7,23 +7,16 @@ export default {
       title: "titolo",
       searchName: "",
       store,
-      filmActive: false,
-      seriesActive: false,
     };
   },
 
   methods: {
     activeFilm() {
-      this.filmActive ? (this.filmActive = false) : (this.filmActive = true);
-      // store.active.filmActive = this.filmActive;
+      store.active.filmActive = !store.active.filmActive;
     },
 
     activeSeries() {
-      this.seriesActive
-        ? (this.seriesActive = false)
-        : (this.seriesActive = true);
-      console.log(this.seriesActive);
-      // store.active.seriesActive = this.seriesActive;
+      store.active.seriesActive = !store.active.seriesActive;
     },
   },
 
@@ -56,12 +49,9 @@ export default {
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
             <a
               @click="activeFilm()"
-              :class="filmActive ? 'active' : ''"
+              :class="store.active.filmActive ? 'active' : ''"
               id="film"
               class="nav-link"
               aria-current="page"
@@ -74,7 +64,7 @@ export default {
               class="nav-link"
               id="series"
               @click="activeSeries()"
-              :class="seriesActive ? 'active' : ''"
+              :class="store.active.seriesActive ? 'active' : ''"
               aria-current="page"
               href="#"
               >Series</a
@@ -109,8 +99,18 @@ export default {
 
 <style lang="scss" scoped>
 .navbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
   z-index: 8;
-  background-color: black !important;
+
+  background: linear-gradient(
+    to bottom,
+    black 0%,
+    rgba(0, 0, 0, 0.5) 80%,
+    rgba(255, 255, 255, 0) 100%
+  ) !important;
   .navbar-brand {
     color: red;
     font-weight: 900;

@@ -2,8 +2,8 @@ import { reactive } from "vue";
 
 export const store = reactive({
   active: {
-    filmActive: false,
-    seriesActive: false,
+    filmActive: true,
+    seriesActive: true,
   },
   filmDetails: [],
   seriesDetails: [],

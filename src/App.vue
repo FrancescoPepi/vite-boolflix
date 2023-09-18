@@ -120,7 +120,7 @@ export default {
 
 <style lang="scss">
 body {
-  background-color: rgb(23, 23, 23) !important;
+  background-color: rgb(24, 24, 24) !important;
   height: 100%;
 }
 </style>

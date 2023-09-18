@@ -166,7 +166,14 @@ export default {
     padding: 1rem;
     height: 60%;
     width: 100%;
-    background-color: #00000094;
+    background: linear-gradient(
+      to top,
+      black 0%,
+      rgba(0, 0, 0, 0.7) 30%,
+      rgba(36, 36, 36, 0.4) 90%,
+      rgba(255, 255, 255, 0.07) 100%
+    );
+    backdrop-filter: blur(2px);
     opacity: 0%;
 
     position: absolute;
@@ -174,7 +181,7 @@ export default {
     left: -100%;
 
     transition: all 0.3s ease-in-out;
-    overflow-y: scroll;
+    overflow-y: auto;
     &.show-mouse-leave {
       left: -100%;
       bottom: -60%;
@@ -190,7 +197,15 @@ export default {
     left: 0%;
     width: 100%;
     height: 60%;
-    background-color: #00000094;
+    background: linear-gradient(
+      to top,
+      black 0%,
+      rgba(0, 0, 0, 0.7) 30%,
+      rgba(36, 36, 36, 0.4) 90%,
+      rgba(255, 255, 255, 0.07) 100%
+    );
+    backdrop-filter: blur(2px);
+    overflow-y: auto;
     opacity: 0%;
     transition: all 0.3s ease-in-out;
     &.show-mouse-leave {
