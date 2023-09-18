@@ -45,7 +45,7 @@ export default {
     <div class="row row-cols-4">
       <MovieCardComponent
         v-for="(card, index) in store.filmDetails"
-        :movies="store.filmDetails[index]"
+        :movies="card"
         :index="index"
         :key="index"
       />
@@ -57,7 +57,7 @@ export default {
     <div class="row row-cols-4">
       <MovieCardComponent
         v-for="(card, index) in store.seriesDetails"
-        :movies="store.seriesDetails[index]"
+        :movies="card"
         :index="store.filmDetails.length + index"
         :key="index"
       />

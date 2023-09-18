@@ -11,31 +11,13 @@ export default {
 
   methods: {
     activeFilm() {
-      const film = document.getElementById("film");
-
-      if (film.classList.contains("active")) {
-        film.classList.remove("active");
-        this.filmActive = false;
-        console.log("non ce +");
-      } else {
-        film.classList.add("active");
-        this.filmActive = true;
-        console.log("ora ce");
-      }
+      this.filmActive ? (this.filmActive = false) : (this.filmActive = true);
     },
 
     activeSeries() {
-      const film = document.getElementById("series");
-
-      if (film.classList.contains("active")) {
-        film.classList.remove("active");
-        this.seriesActive = false;
-        console.log("non ce +");
-      } else {
-        film.classList.add("active");
-        this.seriesActive = true;
-        console.log("ora ce");
-      }
+      this.seriesActive
+        ? (this.seriesActive = false)
+        : (this.seriesActive = true);
     },
   },
 
@@ -73,6 +55,7 @@ export default {
           <li class="nav-item">
             <a
               @click="activeFilm()"
+              :class="filmActive ? 'active' : ''"
               id="film"
               class="nav-link"
               aria-current="page"
@@ -85,6 +68,7 @@ export default {
               class="nav-link"
               id="series"
               @click="activeSeries()"
+              :class="seriesActive ? 'active' : ''"
               aria-current="page"
               href="#"
               >Series</a

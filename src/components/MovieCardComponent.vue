@@ -6,31 +6,30 @@ export default {
     return {
       notFoundImg: "/no-pic.webp",
       maxStar: (Math.floor(this.movies.vote_average) / 2).toFixed(),
+      cardMouseOver: false,
+      cardMouseClick: false,
+      cardMouseLeave: false,
     };
   },
 
   methods: {
     on() {
-      const card = document.querySelector(`[data-key="${this.index}"]`);
-      card.querySelector(".card-body").style.bottom = "0";
-      card.querySelector(".card-body").style.opacity = "100%";
-      card.querySelector(".overview").style.bottom = "0";
-      card.querySelector(".overview").style.opacity = "100%";
+      // stato iniziale - classe 'show-first-overlay'
+      this.cardMouseOver = true;
+      this.cardMouseLeave = false;
     },
+
     onClick() {
-      // console.log("ciao");
-      const card = document.querySelector(`[data-key="${this.index}"]`);
-      card.querySelector(".card-body").style.left = "100%";
-      card.querySelector(".overview").style.left = "0%";
+      // stato active - classe 'show-second-overlay'
+      this.cardMouseClick
+        ? (this.cardMouseClick = false)
+        : (this.cardMouseClick = true);
     },
     off() {
-      const card = document.querySelector(`[data-key="${this.index}"]`);
-      card.querySelector(".card-body").style.left = "0";
-      card.querySelector(".card-body").style.bottom = "-60%";
-      card.querySelector(".card-body").style.opacity = "0";
-      card.querySelector(".overview").style.left = "-100%";
-      card.querySelector(".overview").style.bottom = "-60%";
-      card.querySelector(".overview").style.opacity = "0";
+      // stato spento - classe 'hidden-overlay'
+      this.cardMouseOver = false;
+      this.cardMouseLeave = true;
+      this.cardMouseClick = false;
     },
   },
 
@@ -48,9 +47,9 @@ export default {
 <template>
   <div class="col my-3">
     <div
-      @mouseleave="off()"
       @mouseenter="on()"
       @click="onClick()"
+      @mouseleave="off()"
       :data-key="index"
       class="card"
       style="width: 18rem"
@@ -68,7 +67,14 @@ export default {
         alt="..."
       />
       <!-- INFO FILM/SERIES -->
-      <div class="card-body">
+      <div
+        class="card-info"
+        :class="{
+          'show-mouse-overlay': cardMouseOver, // (mouseover),
+          'show-mouse-click-overlay': cardMouseClick, // (click),
+          'show-mouse-leave': cardMouseLeave, // (mouseleave),
+        }"
+      >
         <div class="card-text">
           <p v-show="movies.title.length">
             <span> TITOLO: </span> {{ movies.title }}
@@ -124,7 +130,14 @@ export default {
         </div>
       </div>
       <!-- DESCRIZIONE FILM/SERIES -->
-      <div class="overview">
+      <div
+        class="overview"
+        :class="{
+          'show-mouse-overlay': cardMouseOver, // (mouseover),
+          'show-mouse-click-overlay': cardMouseClick, // (click),
+          'show-mouse-leave': cardMouseLeave, // (mouseleave),
+        }"
+      >
         <div class="card-text">
           <p><span> TITOLO: </span> {{ movies.title }}</p>
 
@@ -145,6 +158,10 @@ export default {
   p {
     margin-bottom: 1px;
   }
+  .show-mouse-overlay {
+    bottom: 0 !important;
+    opacity: 100% !important;
+  }
   .overview {
     padding: 1rem;
     height: 60%;
@@ -158,8 +175,16 @@ export default {
 
     transition: all 0.3s ease-in-out;
     overflow-y: scroll;
+    &.show-mouse-leave {
+      left: -100%;
+      bottom: -60%;
+      opacity: 0;
+    }
+    &.show-mouse-click-overlay {
+      left: 0%;
+    }
   }
-  .card-body {
+  .card-info {
     position: absolute;
     bottom: -60%;
     left: 0%;
@@ -168,6 +193,14 @@ export default {
     background-color: #00000094;
     opacity: 0%;
     transition: all 0.3s ease-in-out;
+    &.show-mouse-leave {
+      left: 0;
+      bottom: -60%;
+      opacity: 0;
+    }
+    &.show-mouse-click-overlay {
+      left: 100%;
+    }
   }
   .card-img-top {
     width: 100%;
@@ -178,8 +211,8 @@ export default {
     font-weight: 800;
     color: rgb(192, 185, 185);
   }
-  .active {
-    color: red;
-  }
+  // .active {
+  //   color: red;
+  // }
 }
 </style>
